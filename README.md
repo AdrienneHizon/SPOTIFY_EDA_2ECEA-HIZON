@@ -12,7 +12,8 @@ This project presents an exploratory data analysis (EDA) of the Most Streamed Sp
 
 ## 🖥 Overview of Dataset
 
-Importing these libraries is essential for data analysis and visualizations
+> [!IMPORTANT]
+> ❗ Importing these libraries is essential for data analysis and visualizations
 
 ```python
 import numpy as np
