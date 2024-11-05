@@ -15,10 +15,20 @@ This project presents an exploratory data analysis (EDA) of the Most Streamed Sp
   - 📏 General Statistics
   - 〽️ STREAM STATISTICS: Mean, Median, and Standard Deviation
   - 📅 Released Year and Artist Count Distribution Statistics
-- Hello
+- 🏆 Top Performers in Spotify
+  - 🏅 Top 5 Songs in Spotify (2023)
+  - ⭐ Top 5 Most Frequent Artist
+- 🎺 Temporal Trends
+  - 📰 Yearly Trends
+  - 🕓 Monthly Trends
+- 🎸 Genre and Music Characteristics
+  - 🔀 Streams and Attributes Correlation
+  - ⚛ Attributes Correlation
 
 
 ## 🖥 Overview of Dataset
+
+This section provides an overview of the dataset used for analyzing the most streamed songs on Spotify in 2023, detailing its key components, such as track attributes, streaming counts, and artist information, which serve as the foundation for our analysis.
 
 > [!IMPORTANT]
 > ❗ Importing these libraries is essential for data analysis and visualizations
@@ -41,6 +51,9 @@ spotify
 The dataframe above contains the top 953 songs from spotify with 24 columns of different information that can range in presence of other apps such as Apple Music and Deezers, general informations and charts, and musical characteristics
 
 ## 📡 General Informations
+
+Here, we summarize general information from the dataset, including distributions by artist, genre, and release year, to establish context and identify potential patterns in music streaming behaviors.
+
 
 The Row and Columns display is shown for general information purposes
 
@@ -137,6 +150,8 @@ Key and in_deezer_charts have the most amount of null values
 
 ## 📈 Statistics, Outliers, Trends, etc.
 
+In this section, we present statistical insights, focusing on metrics like mean and median streaming counts, while identifying outliers and trends to uncover significant patterns in listener behavior and streaming performance.
+
 ### 📏 General Statistics
 This will display the general statistics of the table (streams not included, as it is analyzed in the other section)
 
@@ -213,6 +228,215 @@ plt.show()
 
 Observed on the data above, the distribution of tracks by artist count was found out that most tracks that were released were made solo. Though, there are still great numbers of tracks that were released with a collaboration with other artists.
 
+## 🏆 Top Performers in Spotify
+
+We highlight the top-performing songs and artists based on streaming figures, exploring the factors contributing to their success and providing a snapshot of the competitive landscape within Spotify's music ecosystem.
+
+### 🏅 Top 5 Songs in Spotify (2023)
+
+To display the top performers in spotify, ensure that there's no null values that will hinder its computation. Therefore:
+
+```python
+spotify['streams'] = pd.to_numeric(spotify['streams'].astype(str).str.replace(',', ''), errors='coerce')
+top_5_streams_df = spotify.sort_values(by='streams', ascending=False).head(5).reset_index(drop=True)
+top_5_streams_df
+```
+
+![image](https://github.com/user-attachments/assets/5e5a36d1-6303-4433-8822-6a2124a0b2c8)
+
+On the table, Blinding lights by the Weeknd has 3 billion streams on spotify and is at spotify charts 69 times
+
+### ⭐ Top 5 Most Frequent Artist
+
+```python
+top_artists = spotify['artist(s)_name'].str.split(', ').explode().value_counts().head(5)
+top_artists_df = top_artists.reset_index()
+top_artists_df.columns = ['Artist', 'Track Count']
+
+top_artists_df
+```
+![image](https://github.com/user-attachments/assets/bbe03c9f-2c8a-4c33-ab69-e0ab37d1e123)
+
+Leading artist was Bad Bunny having 40 tracks in the spotify popular lists, second leading is Taylor Swift with 38 tracks in the spotify popular list
+
+## 🎺 Temporal Trends
+
+This section examines temporal trends in music streaming, analyzing how song popularity varies over time. We will also consider attributes such as danceability, valence, energy, BPM, and acousticness to understand how these characteristics influence listener engagement and streaming figures throughout different periods.
+
+### 📰 Yearly Trends
+
+Plot the number of tracks by release year with seaborn styling
+
+```python
+# Number of tracks by release year
+tracks_per_year = spotify['released_year'].value_counts().sort_index()
+
+# Plotting the trend over time
+plt.figure(figsize=(12, 6))
+tracks_per_year.plot(kind='bar', color='teal')
+plt.xlabel('Year')
+plt.ylabel('Number of Tracks')
+plt.title('Distribution of Tracks by Released Year')
+plt.show()
+```
+![image](https://github.com/user-attachments/assets/9a9ac8cf-892c-4ff5-aaed-9ea1316a5677)
+
+Theres a significant trend of popular music that arisen back in year 2022
+
+Grouping the musical characteristics and plotting it in a line graph for correlations
+
+```python
+# Group by released_year and calculate the average of each musical attribute
+attributes_by_year = spotify.groupby('released_year')[['danceability_%', 'energy_%', 'acousticness_%', 'valence_%']].mean()
+
+# Plotting trends for each attribute
+plt.figure(figsize=(12, 6))
+for attribute in attributes_by_year.columns:
+    plt.plot(attributes_by_year.index, attributes_by_year[attribute], label=attribute)
+
+plt.xlabel('Year')
+plt.ylabel('Average Value')
+plt.title('Yearly Average of Musical Attributes')
+plt.legend()
+plt.show()
+```
+
+![image](https://github.com/user-attachments/assets/eddde384-a137-4db2-ba35-aad20d0cd2b3)
+
+As year goes by, there 4 musical attributes are fighting for trends, as of 21th century, the leading characteristics are danceability and energy
+
+### 🕓 Monthly Trends
+
+Counting values in the released_month and plotting it inside the bar graph
+
+```python
+# Count the number of tracks by release month
+tracks_per_month = spotify['released_month'].value_counts().sort_index()
+
+# Plotting the trend by month
+plt.figure(figsize=(10, 5))
+tracks_per_month.plot(kind='bar', color='skyblue')
+plt.xlabel('Month')
+plt.ylabel('Number of Tracks')
+plt.title('Distribution of Tracks by Release Month')
+plt.xticks(ticks=range(12), labels=['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'])
+plt.show()
+```
+
+![image](https://github.com/user-attachments/assets/015ed737-5ea9-4c64-8671-c086c59e5747)
+
+Based on the observed pattern, there has been a boom of popular music when its the month of January and May
+
+Grouping attributes by months released and plotting it in a line graph
+
+```python
+# Group by released_month and calculate the average of each musical attribute
+attributes_by_month = spotify.groupby('released_month')[['danceability_%', 'energy_%', 'acousticness_%', 'valence_%']].mean()
+
+# Plotting trends for each attribute
+plt.figure(figsize=(10, 5))
+for attribute in attributes_by_month.columns:
+    plt.plot(attributes_by_month.index, attributes_by_month[attribute], label=attribute)
+
+plt.xlabel('Month')
+plt.ylabel('Average Value')
+plt.title('Monthly Average of Musical Attributes')
+plt.legend()
+plt.xticks(ticks=range(1, 13), labels=['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'])
+plt.show()
+```
+
+![image](https://github.com/user-attachments/assets/6b73bb48-c0e2-405f-ba7b-04e40ca339f5)
+
+Based on the observed graph, there has been a consistent leading of danceability and energy as an attribute as months go by
+
+
+## 🎸 Genre and Music Characteristics
+
+In this section, we analyze the relationship between music genres and their characteristics, focusing on attributes like danceability, valence, energy, BPM, and acousticness. By exploring how these features vary across genres, we aim to uncover trends and preferences that shape streaming success and influence listener choices on Spotify.
+
+### 🔀 Streams and Attributes Correlation
+
+Convert columns to numeric to avoid NaN errors
+
+```python
+# Convert columns to numeric, coercing errors to NaN
+columns_to_convert = ['streams', 'bpm', 'danceability_%', 'energy_%', 'valence_%', 'acousticness_%']
+for col in columns_to_convert:
+    spotify[col] = pd.to_numeric(spotify[col], errors='coerce')
+
+# Calculate the correlation matrix
+corr_matrix = spotify[['streams', 'bpm', 'danceability_%', 'energy_%', 'valence_%', 'acousticness_%']].corr()
+
+# Set a dark style for the heatmap
+sns.set(style="dark", font_scale=1.2)
+
+plt.figure(figsize=(10, 8))
+sns.heatmap(corr_matrix, annot=True, fmt=".2f", cmap="coolwarm", linewidths=0.5, linecolor="black",
+            annot_kws={"size": 12, "color": "black"}, cbar_kws={"shrink": 0.8})
+plt.title("Correlation Heatmap of Musical Attributes and Streams", fontsize=16, fontweight='bold', color='lightblue')
+plt.xticks(rotation=45, ha='right', color='gray')
+plt.yticks(rotation=0, color='gray')
+plt.show()
+```
+
+![image](https://github.com/user-attachments/assets/ed151aa5-cad3-454b-889f-b8f346855d4d)
+
+In the heatmap that was constructed almost every attributes has negative correlation when its related to streams, meaning, characteristics has nothing to do with popularity because of the difference of preferences by other people
+
+Plotting the correlations of streams and musical attributes to a scatterplot graph using seaborn
+
+```python
+# Scatter plots with Streams and additional attribute Valence
+fig, axes = plt.subplots(1, 4, figsize=(24, 5))
+
+# Streams vs Danceability
+sns.scatterplot(ax=axes[0], x='danceability_%', y='streams', data=spotify)
+axes[0].set_title("Streams vs Danceability %")
+
+# Streams vs BPM
+sns.scatterplot(ax=axes[1], x='bpm', y='streams', data=spotify)
+axes[1].set_title("Streams vs BPM")
+
+# Streams vs Energy
+sns.scatterplot(ax=axes[2], x='energy_%', y='streams', data=spotify)
+axes[2].set_title("Streams vs Energy %")
+
+# Streams vs Valence
+sns.scatterplot(ax=axes[3], x='valence_%', y='streams', data=spotify)
+axes[3].set_title("Streams vs Valence %")
+
+plt.tight_layout()
+plt.show()
+```
+
+![image](https://github.com/user-attachments/assets/eeff98f6-243e-41e7-9196-fe1ca2144546)
+
+
+On the scatterplot that was constructed, there's no significant correlation of how different attributes should be to boost the count of streams on music, it is not correlated on how a music is going to be popular. This discovery has made a realization that it does not matter what characteristics in music a piece of good music should be
+
+### ⚛ Attributes Correlation
+
+Plotting attributes in the scatterplot graph with seaborn styling
+
+```python
+fig, axes = plt.subplots(1, 2, figsize=(12, 5))
+
+# Danceability vs Energy
+sns.scatterplot(ax=axes[0], x='danceability_%', y='energy_%', data=spotify)
+axes[0].set_title("Danceability % vs Energy %")
+
+# Valence vs Acousticness
+sns.scatterplot(ax=axes[1], x='valence_%', y='acousticness_%', data=spotify)
+axes[1].set_title("Valence % vs Acousticness %")
+
+plt.tight_layout()
+plt.show()
+```
+
+![image](https://github.com/user-attachments/assets/412d41b4-b1ee-443b-a3f8-1a12491ea2df)
+
+There has been a good correlation when the comparison of danceability and energy takes place. Valence and acousticness almost has no correlation with each other as they are independent. An increase of danceability factor also increases the energy level of a music and vice versa
 
 
 
