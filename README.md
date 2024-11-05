@@ -16,7 +16,7 @@ This project presents an exploratory data analysis (EDA) of the Most Streamed Sp
 - [🖥 Overview of Dataset](#-overview-of-dataset)
 - [📡 General Informations](#-general-informations)
   - [📂 Null Count and Datatype](#-null-count-and-datatype)
-- [📈 Statistics, Outliers, Trends, etc.](#-statistics,-outliers,-trends,-etc.)
+- [📈 Statistics, Outliers, Trends, etc.](#-statistics-outliers-trends-etc)
   - 📏 General Statistics
   - 〽️ STREAM STATISTICS: Mean, Median, and Standard Deviation
   - 📅 Released Year and Artist Count Distribution Statistics
