@@ -13,9 +13,9 @@ This project presents an exploratory data analysis (EDA) of the Most Streamed Sp
 ## 🗂 Table of Contents
 - [📖 Introduction](#-introduction)
 - [🗂 Table of Contents](#-table-of-contents)
-- 🖥 Overview of Dataset
-- 📡 General Informations
-  - 📂 Null Count and Datatype
+- [🖥 Overview of Dataset](#-overview-of-dataset)
+- [📡 General Informations](#-general-informations)
+  - [📂 Null Count and Datatype](#-null-count-and-datatype)
 - 📈 Statistics, Outliers, Trends, etc.
   - 📏 General Statistics
   - 〽️ STREAM STATISTICS: Mean, Median, and Standard Deviation
