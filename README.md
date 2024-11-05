@@ -11,8 +11,8 @@ This project presents an exploratory data analysis (EDA) of the Most Streamed Sp
 > 💡 The analysis took place on the dataset that was posted in [Kaggle](https://www.kaggle.com/datasets/nelgiriyewithana/top-spotify-songs-2023). You can download the dataset on the highlighted text for reference
 
 ## 🗂 Table of Contents
-- 📖 Introduction
-- 🗂 Table of Contents
+- [📖 Introduction](#-introduction)
+- [🗂 Table of Contents](#-table-of-contents)
 - 🖥 Overview of Dataset
 - 📡 General Informations
   - 📂 Null Count and Datatype
@@ -31,7 +31,7 @@ This project presents an exploratory data analysis (EDA) of the Most Streamed Sp
   - ⚛ Attributes Correlation
 - 📻 Platform Popularity, Patterns, and Consistency
   - 💾 Platform Comparison
-  - [🎹 Keys Distribution](#keysdistribution)
+  - [🎹 Keys Distribution](#-keys-distribution)
   - 📣 Top 10 Most Frequent Artists on Charts
 - 🗒 Conclusion
 - 🔑 Author
