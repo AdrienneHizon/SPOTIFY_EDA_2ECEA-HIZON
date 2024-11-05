@@ -29,7 +29,12 @@ This project presents an exploratory data analysis (EDA) of the Most Streamed Sp
 - 🎸 Genre and Music Characteristics
   - 🔀 Streams and Attributes Correlation
   - ⚛ Attributes Correlation
-
+- 📻 Platform Popularity, Patterns, and Consistency
+  - 💾 Platform Comparison
+  - 🎹 Keys Distribution
+  - 📣 Top 10 Most Frequent Artists on Charts
+- 🗒 Conclusion
+- 🔑 Author
 
 ## 🖥 Overview of Dataset
 
@@ -442,6 +447,102 @@ plt.show()
 ![image](https://github.com/user-attachments/assets/412d41b4-b1ee-443b-a3f8-1a12491ea2df)
 
 There has been a good correlation when the comparison of danceability and energy takes place. Valence and acousticness almost has no correlation with each other as they are independent. An increase of danceability factor also increases the energy level of a music and vice versa
+
+
+## 📻 Platform Popularity, Patterns, and Consistency
+
+This section explores the popularity and performance of Spotify, Apple Music, and Deezer, analyzing user engagement patterns and consistency in streaming behaviors across these platforms. We will highlight key notes, such as major and minor trends, as well as frequently streamed artists, to uncover how these platforms differ in their appeal and user preferences within the music streaming landscape.
+
+### 💾 Platform Comparison
+
+Ensure that there will be no NaN errors by converting columns to numeric; plotting a successful data on a bar graph
+
+```python
+# Attempt to convert columns to numeric, setting errors='coerce' to convert non-numeric values to NaN
+columns_to_convert = ['in_spotify_playlists', 'in_spotify_charts', 'in_apple_playlists', 'in_deezer_playlists', 'in_deezer_charts']
+spotify[columns_to_convert] = spotify[columns_to_convert].apply(pd.to_numeric, errors='coerce')
+
+# Sum of tracks on different platforms
+platform_data = spotify[columns_to_convert].sum().reset_index()
+platform_data.columns = ['Platform', 'Count']
+
+# Plotting
+plt.figure(figsize=(12, 6))
+sns.barplot(data=platform_data, x='Platform', y='Count', hue='Platform', dodge=False, palette='viridis')
+plt.title('Number of Tracks by Platform', fontsize=16, fontweight='bold')
+plt.xlabel('Platform', fontsize=14)
+plt.ylabel('Number of Tracks', fontsize=14)
+plt.xticks(rotation=45)
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+plt.show()
+```
+
+![image](https://github.com/user-attachments/assets/18ca7030-ec29-4992-80ea-8c7712ad2cf5)
+
+
+Based on the bar graph that was shown, Spotify playlists have the most popular songs stored among all platforms
+
+### 🎹 Keys Distribution
+
+Counting the key distribution on tracks and plotting its frequency on a graph
+
+```python
+# Count of tracks by key and mode
+key_mode_counts = spotify.groupby(['key', 'mode']).size().reset_index(name='Count')
+
+# Plotting
+plt.figure(figsize=(12, 8))
+sns.barplot(data=key_mode_counts, x='key', y='Count', hue='mode', palette='coolwarm', dodge=False)
+plt.title('Distribution of Tracks by Key and Mode', fontsize=16, fontweight='bold')
+plt.xlabel('Key', fontsize=14)
+plt.ylabel('Number of Tracks', fontsize=14)
+plt.xticks(rotation=45)
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+plt.legend(title='Mode', title_fontsize='13', fontsize='11', loc='upper right')
+plt.show()
+```
+
+![image](https://github.com/user-attachments/assets/6c1ec21d-39dd-42e5-b599-1db57ab6a268)
+
+On the Bar Graph that was plotted, the C# has the most presence in the number of tracks for being either a Minor or Major; while D# is being the least used Minor and A being the least used Major
+
+### 📣 Top 10 Most Frequent Artists on Charts
+
+Plotting the most frequent artist on charts
+
+```python
+# Count the occurrences of each artist across all relevant columns
+platform_columns = ['in_spotify_playlists', 'in_spotify_charts', 'in_apple_playlists', 'in_apple_charts', 'in_deezer_playlists', 'in_deezer_charts']
+artist_counts = spotify.groupby("artist(s)_name")[platform_columns].sum().sum(axis=1).sort_values(ascending=False)
+
+# Select the top 10 most frequently appearing artists in playlists and charts
+top_artists = artist_counts.head(10).reset_index()
+top_artists.columns = ['Artist', 'Appearances']
+
+# Plotting
+plt.figure(figsize=(14, 7))
+sns.barplot(data=top_artists, x='Appearances', y='Artist', hue='Artist', dodge=False, palette="coolwarm", legend=False)
+plt.title('Top 10 Most Frequently Appearing Artists in Playlists/Charts', fontsize=16, fontweight='bold')
+plt.xlabel('Appearances in Playlists/Charts', fontsize=14)
+plt.ylabel('Artist', fontsize=14)
+plt.grid(axis='x', linestyle='--', alpha=0.7)
+plt.show()
+```
+
+![image](https://github.com/user-attachments/assets/33895694-ba28-4395-b564-b17ac4aeef6d)
+
+The Top 3 Artists frequently appearing in playlist and charts are The Weeknd, Taylor Swift, and Ed Sheeran. They are known for their Pop, Romance, and RnB songs
+
+## 🗒 Conclusion
+
+In this analysis, we have explored the dynamics of music streaming in 2023 through a comprehensive examination of the most streamed songs on Spotify, Apple Music, and Deezer. By delving into the dataset's overview and general information, we established a foundational understanding of the key characteristics and trends in the music landscape. Our statistical analysis highlighted significant patterns and outliers that reflect listener behavior, while the exploration of top performers showcased the factors contributing to success in the streaming realm. Additionally, we identified temporal trends and analyzed genre-specific characteristics to gain insights into how different attributes influence streaming popularity. Finally, our examination of platform popularity revealed distinct user engagement patterns across Spotify, Apple Music, and Deezer, emphasizing the competitive nature of the music streaming industry. Overall, this analysis provides valuable insights into the evolving preferences of music listeners and the factors that shape the success of tracks and artists across platforms.
+
+## 🔑 Author
+- Name: Kyle Adrienne S. Hizon
+- Section: 2ECE-A
+
+
+
 
 
 
