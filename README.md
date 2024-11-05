@@ -1,6 +1,7 @@
 # 🎶 Exploratory Data Analysis on Spotify 2023 Dataset (Incentive) 🎵
 
-![image](https://github.com/user-attachments/assets/e120d1fa-0611-4e7e-8a44-9b779f939d28)
+![image](https://github.com/user-attachments/assets/e84f5862-256d-4d71-be37-67a9b08e1deb)
+
 
 
 ## 📖 Introduction 
