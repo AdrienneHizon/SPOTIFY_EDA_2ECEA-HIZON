@@ -20,8 +20,8 @@ This project presents an exploratory data analysis (EDA) of the Most Streamed Sp
   - [📏 General Statistics](#-general-statistics)
   - [〽️ STREAM STATISTICS: Mean, Median, and Standard Deviation](#%EF%B8%8F-stream-statistics-mean-median-and-standard-deviation)
   - [📅 Released Year and Artist Count Distribution Statistics](#-released-year-and-artist-count-distribution-statistics)
-- [🏆 Top Performers in Spotify]
-  - [🏅 Top 5 Songs in Spotify (2023)]
+- [🏆 Top Performers in Spotify](#-top-performers-in-spotify)
+  - [🏅 Top 5 Songs in Spotify (2023)](#-top-5-songs-in-spotify-2023)
   - [⭐ Top 5 Most Frequent Artist]
 - [🎺 Temporal Trends]
   - [📰 Yearly Trends]
