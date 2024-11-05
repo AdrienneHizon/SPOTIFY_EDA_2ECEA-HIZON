@@ -31,7 +31,7 @@ This project presents an exploratory data analysis (EDA) of the Most Streamed Sp
   - ⚛ Attributes Correlation
 - 📻 Platform Popularity, Patterns, and Consistency
   - 💾 Platform Comparison
-  - 🎹 Keys Distribution
+  - [🎹 Keys Distribution](main#-keys-distribution)
   - 📣 Top 10 Most Frequent Artists on Charts
 - 🗒 Conclusion
 - 🔑 Author
