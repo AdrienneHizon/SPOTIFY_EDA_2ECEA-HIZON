@@ -22,19 +22,19 @@ This project presents an exploratory data analysis (EDA) of the Most Streamed Sp
   - [📅 Released Year and Artist Count Distribution Statistics](#-released-year-and-artist-count-distribution-statistics)
 - [🏆 Top Performers in Spotify](#-top-performers-in-spotify)
   - [🏅 Top 5 Songs in Spotify (2023)](#-top-5-songs-in-spotify-2023)
-  - [⭐ Top 5 Most Frequent Artist]
-- [🎺 Temporal Trends]
-  - [📰 Yearly Trends]
-  - [🕓 Monthly Trends]
-- [🎸 Genre and Music Characteristics]
-  - [🔀 Streams and Attributes Correlation]
-  - [⚛ Attributes Correlation]
-- [📻 Platform Popularity, Patterns, and Consistency]
-  - [💾 Platform Comparison]
+  - [⭐ Top 5 Most Frequent Artist](#-top-5-most-frequent-artist)
+- [🎺 Temporal Trends](#-temporal-trends)
+  - [📰 Yearly Trends](#-yearly-trends)
+  - [🕓 Monthly Trends](#-monthly-trends)
+- [🎸 Genre and Music Characteristics](#-genre-and-music-characteristics)
+  - [🔀 Streams and Attributes Correlation](#-streams-and-attributes-correlation)
+  - [⚛ Attributes Correlation](#-attributes-correlation)
+- [📻 Platform Popularity, Patterns, and Consistency](#-platform-popularity-patterns-and-consistency)
+  - [💾 Platform Comparison](#-platform-comparison)
   - [🎹 Keys Distribution](#-keys-distribution)
-  - [📣 Top 10 Most Frequent Artists on Charts]
-- [🗒 Conclusion]
-- [🔑 Author]
+  - [📣 Top 10 Most Frequent Artists on Charts](#-top-10-most-frequent-artists-on-charts)
+- [🗒 Conclusion](#-conclusion)
+- [🔑 Author](#-author)
 
 ## 🖥 Overview of Dataset
 
