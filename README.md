@@ -1,4 +1,4 @@
-# Exploratory Data Analysis on Spotify 2023 Dataset
+# 🎶Exploratory Data Analysis on Spotify 2023 Dataset🎵
 
 ![image](https://github.com/user-attachments/assets/f70e229d-46af-4738-81ec-1c4a3ca1ac15)
 
